@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 class Solution {
@@ -22,14 +22,16 @@ public:
     }
 };
 
-int main() {
-    int n, tar;
-    cin >> n >> tar;
-    vector<int> v(n);
-    for (int i = 0; i < n; i++) {
-        cin >> v[i];
+int main()
+{
+    int n,tar;
+    cin>>n>>tar;
+    vector<int>v(n);
+    for(int i=0 ; i<n ; i++)
+    {
+        cin>>v[i];
     }
-
     Solution sol;
-    cout << sol.minSubArrayLen(tar, v) << endl;
+    int len = sol.minSubArrayLen(tar , v);
+    cout<<len<<endl;
 }

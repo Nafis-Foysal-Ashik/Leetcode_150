@@ -6,11 +6,11 @@ public:
     bool canConstruct(string ransomNote, string magazine) {
         map<char,int>ran;
         map<char,int>mag;
-        for(char it : ransomNote)
+        for(auto it : ransomNote)
         {
             ran[it]++;
         }
-        for(char it : magazine)
+        for(auto it : magazine)
         {
             mag[it]++;
         }
@@ -20,12 +20,9 @@ public:
             int frequency = it.second;
             if(mag[ch]>=frequency)
             {
-                continue;;
+                continue;
             }
-            else 
-            {
-                return false;
-            }
+            return false;
         }
         return true;
     }

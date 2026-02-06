@@ -4,42 +4,30 @@ using namespace std;
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        int len1=ransomNote.length();
-        int len2=magazine.length();
-
-        sort(ransomNote.begin(), ransomNote.end());
-        sort(magazine.begin(), magazine.end());
-        int j=0;
-        for(int i=0 ; i<len2 ; i++)
+        map<char,int>ran;
+        map<char,int>mag;
+        for(char it : ransomNote)
         {
-            if(ransomNote[0]!=magazine[i])
+            ran[it]++;
+        }
+        for(char it : magazine)
+        {
+            mag[it]++;
+        }
+        for(auto it : ran)
+        {
+            char ch = it.first;
+            int frequency = it.second;
+            if(mag[ch]>=frequency)
             {
-                continue;
+                continue;;
             }
-            // else if(magazine[len2-1]!=ransomNote[len1-1])
-            // {
-            //     continue;
-            // }
-            else
+            else 
             {
-                int j=0;
-                while(j!=len1)
-                {
-                    if(ransomNote[j]==magazine[i])
-                    {
-                        i++;
-                        j++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                if(j==len1)
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 };
 

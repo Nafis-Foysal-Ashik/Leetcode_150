@@ -4,42 +4,22 @@ using namespace std;
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        int currentGas = 0;
-        int n=gas.size();
-        int totalGas=0;
-        int totalCost=0;
-        int i,j;
-        for(int i=0 ; i<n ; i++)
-        {
-            totalGas+=gas[i];
+    int totalGas = 0, totalCost = 0;
+    int tank = 0, start = 0;
+
+    for (int i = 0; i < gas.size(); i++) {
+        totalGas += gas[i];
+        totalCost += cost[i];
+        tank += gas[i] - cost[i];
+
+        if (tank < 0) {
+            start = i + 1;
+            tank = 0;
         }
-        for(int j=0 ; j<n ; j++)
-        {
-            totalCost+=cost[j];
-        }
-        if(totalGas>=totalCost)
-        {
-            for(i=0 ; i<n ; i++)
-            {
-                for(j=i ; j<n ; j++)
-                {
-                    if(gas[i]>=cost[j])
-                    {
-                        currentGas += gas[i]-cost[j];
-                        i++;
-                    }
-                    else
-                    {
-                        currentGas=0;
-                        j=i;
-                        break;
-                    }
-                }
-            }
-            return i;
-        }
-        return -1;
     }
+    return (totalGas >= totalCost) ? start : -1;
+}
+
 };
 
 int main()
